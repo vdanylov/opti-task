@@ -9,9 +9,7 @@ export default class StoriesDataTable extends Component {
     }
 
   render() {
-    
-    const { stories } = this.props;
-
+    const { stories, showMoreInfo } = this.props;
     return (
       <div>
         <DataTable
@@ -21,7 +19,7 @@ export default class StoriesDataTable extends Component {
             rowKeyColumn="id"
         >
             <TableHeader name="title" tooltip="Story title">Title</TableHeader>
-            <TableHeader name="id" tooltip="Show info" cellFormatter={id => <Button colored mini='true' onClick={() => {}}>Info</Button>}>Link</TableHeader>
+            <TableHeader name="id" tooltip="Show info" cellFormatter={id => <Button colored mini='true' onClick={showMoreInfo.bind(this, id)}>Info</Button>}>Link</TableHeader>
         </DataTable>    
     </div>
     )
