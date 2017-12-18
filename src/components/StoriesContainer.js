@@ -30,7 +30,7 @@ class StoriesContainer extends Component {
 
         return (
         <div>
-            {!isLoading ?
+            {(!isLoading && !error) ?
                 <div>
                     {!showInfo &&
                         <StoriesDataTable 
@@ -44,6 +44,9 @@ class StoriesContainer extends Component {
                             closeShowInfo={this.closeShowInfo}                        
                         />}
                 </div> : <div>Loading...</div>
+            }
+            {error && 
+                <h1 style={{color: 'red'}}>{error.response.statusText}</h1>
             }
         </div>
         )

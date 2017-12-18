@@ -19,6 +19,10 @@ export default class StoryInfoComponent extends Component {
     });
   }
 
+  renderIframe = url => {
+    return {__html: `<iframe src=${url} width="100%" height="550px"></iframe>`};
+  }
+
   render() {
     
     const { 
@@ -30,25 +34,22 @@ export default class StoryInfoComponent extends Component {
 
     return (
       <div>
-        <Dialog open={openDialog}>
+        <Dialog open={openDialog} style={{width: "80%", height: "80%"}}>
           <DialogContent>
-            lorem50
+            <div dangerouslySetInnerHTML={this.renderIframe(story.url)} />
           </DialogContent>
-          <DialogActions>          
-            <Button 
-              type='button' 
-              onClick={this.handleCloseDialog}
-            >
-              Close
-            </Button>
+          <DialogActions>
+            <Button type='button' onClick={this.handleCloseDialog}>Close</Button>
           </DialogActions>
         </Dialog>
-        <h2>Additional story info</h2>
-        <p><b>Autor:</b> {story.by}</p>
-        <p><b>Title:</b> {story.title}</p>
-        <p><b>Title:</b> {story.type}</p>
-        <Button colored onClick={this.handleOpenDialog}>Read</Button>
-        <Button colored onClick={closeShowInfo}>Close</Button>
+        <div>
+          <h2><b>Additional story info</b></h2>
+          <p><b>Autor:</b> {story.by}</p>
+          <p><b>Title:</b> {story.title}</p>
+          <p><b>Title:</b> {story.type}</p>
+          <Button colored onClick={this.handleOpenDialog}>Read</Button>
+          <Button colored onClick={closeShowInfo}>Close</Button>        
+        </div>
       </div>
     )
   }
