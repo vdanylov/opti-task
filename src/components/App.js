@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import store from '../redux/store/store'
 import 'react-mdl/extra/material.css';
 import 'react-mdl/extra/material.js';
-// import StoriesContainer from './components/StoriesContainer'
+import StoriesContainer from './StoriesContainer'
 import { Grid, Cell } from 'react-mdl'
 
 
@@ -14,7 +14,16 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div style={{width: '80%', margin: 'auto'}}>
-          <ReactHeader />
+          <Grid>
+            <Cell col={12}>
+              <ReactHeader />
+            </Cell>
+          </Grid>
+          <Grid>
+          <div style={{margin: '0 auto'}}>
+              <StoriesContainer />
+          </div>
+        </Grid>
         </div>
       </Provider>    
     );
