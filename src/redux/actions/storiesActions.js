@@ -24,7 +24,7 @@ export const getStories = () => {
         return res.map(story => story.data)
     })
     .catch(error => {
-        console.log(error);
+        // console.log(error);
     })
 };
 
