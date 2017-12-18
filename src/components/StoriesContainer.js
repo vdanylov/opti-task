@@ -39,7 +39,7 @@ class StoriesContainer extends Component {
                         />                    
                     }
                     {(showInfo && story) && 
-                        <StoryInfoComponent 
+                        <StoryInfoComponent
                             story={story} 
                             closeShowInfo={this.closeShowInfo}                        
                         />}

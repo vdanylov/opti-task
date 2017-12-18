@@ -26,7 +26,7 @@ export default class StoryInfoComponent extends Component {
   render() {
     
     const { 
-      story, 
+      story: { url, by, title, type}, 
       closeShowInfo 
     } = this.props;
 
@@ -36,7 +36,7 @@ export default class StoryInfoComponent extends Component {
       <div>
         <Dialog open={openDialog} style={{width: "80%", height: "80%"}}>
           <DialogContent>
-            <div dangerouslySetInnerHTML={this.renderIframe(story.url)} />
+            <div dangerouslySetInnerHTML={this.renderIframe(url)} />
           </DialogContent>
           <DialogActions>
             <Button type='button' onClick={this.handleCloseDialog}>Close</Button>
@@ -44,9 +44,9 @@ export default class StoryInfoComponent extends Component {
         </Dialog>
         <div>
           <h2><b>Additional story info</b></h2>
-          <p><b>Autor:</b> {story.by}</p>
-          <p><b>Title:</b> {story.title}</p>
-          <p><b>Title:</b> {story.type}</p>
+          <p><b>Autor:</b> {by}</p>
+          <p><b>Title:</b> {title}</p>
+          <p><b>Title:</b> {type}</p>
           <Button colored onClick={this.handleOpenDialog}>Read</Button>
           <Button colored onClick={closeShowInfo}>Close</Button>        
         </div>
