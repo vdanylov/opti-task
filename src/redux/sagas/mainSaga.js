@@ -2,7 +2,7 @@ import { call, put, takeEvery } from 'redux-saga/effects'
 import constants from '../constants/index'
 import { getStories } from '../actions/storiesActions'
 
-function* fetchStories(){
+export function* fetchStories(){
     try {
         yield put({type: constants.SET_STORIES_LOADING, isLoading: true});
         const stories = yield call(getStories);

@@ -1,55 +1,20 @@
 import React, { Component } from 'react'
-import constants from '../redux/constants/index'
 import { connect } from 'react-redux'
 import StoriesDataTable from './StoriesDataTable'
 import StoryInfoComponent from './StoryInfoComponent'
+import constants from '../redux/constants/index'
 
 class StoriesContainer extends Component {
 
-    state = {
-        showInfo: false,
-        storyId: null
-    }
+    // closeShowInfo = () => this.setState({ showInfo: false});
 
     componentDidMount = () => this.props.dispatch({ type: constants.GET_STORIES})
-    
-    showMoreInfo = (storyId,e) => {
-        e.preventDefault();
-        this.setState((state, props) => ({ 
-            showInfo: true,
-            storyId
-        }));
-    }
 
-    closeShowInfo = () => this.setState({ showInfo: false});
 
     render() {
-        const { stories: { isLoading, stories, error } } = this.props;
-        const { storyId, showInfo } = this.state;
-        const story = stories.find(story => story.id === storyId);
+        const { stories: { isLoading, error }, children } = this.props;
 
-        return (
-        <div>
-            {(!isLoading && !error) ?
-                <div>
-                    {!showInfo &&
-                        <StoriesDataTable 
-                            stories={stories}
-                            showMoreInfo={this.showMoreInfo}
-                        />                    
-                    }
-                    {(showInfo && story) && 
-                        <StoryInfoComponent
-                            story={story} 
-                            closeShowInfo={this.closeShowInfo}                        
-                        />}
-                </div> : <div>Loading...</div>
-            }
-            {error && 
-                <h1 style={{color: 'red'}}>{error.response.statusText}</h1>
-            }
-        </div>
-        )
+        return <div>{(!isLoading && !error) ? children : <div>Loading...</div> }</div>;
     }
 }
 

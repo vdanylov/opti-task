@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import logo from '../styles/logo.svg';
 import '../styles/App.css';
 import { Provider } from 'react-redux'
-import store from '../redux/store/store'
 import 'react-mdl/extra/material.css';
 import 'react-mdl/extra/material.js';
 import StoriesContainer from './StoriesContainer'
@@ -12,7 +11,6 @@ import { Grid, Cell } from 'react-mdl'
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
         <div style={{width: '80%', margin: 'auto'}}>
           <Grid>
             <Cell col={12}>
@@ -21,11 +19,10 @@ class App extends Component {
           </Grid>
           <Grid>
           <div style={{margin: '0 auto'}}>
-              <StoriesContainer />
+              {this.props.children}
           </div>
         </Grid>
         </div>
-      </Provider>    
     );
   }
 }
